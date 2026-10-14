@@ -124,7 +124,7 @@ Os testes rodam contra o build otimizado com mocks, em Chromium desktop e mobile
 | `cart.spec.ts` | Quantidades, remoção, cupom, persistência e favoritos (com rollback) |
 | `checkout.spec.ts` | Compra completa, recusa, clique repetido, timeout, carteira, expiração no checkout e tempo real (preço, esgotamento, eventos duplicados ou antigos, queda com pedido pendente) |
 | `account.spec.ts` | Perfil, avatar, senha e carteiras |
-| `a11y.spec.ts` | Teclado, foco em diálogos e drawers, erros de formulário, alt e overflow, anúncios |
+| `a11y.spec.ts` | Teclado, foco em diálogos e drawers, erros de formulário, alt, anúncios e ausência de overflow em 390, 768 e 1440 px |
 | `visual.spec.ts` | Regressão visual de início, detalhe, carrinho e pagamento |
 
 Saídas: relatório HTML em `playwright-report/` e traces e screenshots das falhas em `test-results/`. As baselines visuais ficam em `e2e/visual.spec.ts-snapshots/` (geradas no Windows; regenere em outro sistema operacional).

@@ -192,9 +192,9 @@ export function HomePage() {
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col gap-6 md:gap-8">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <CatalogTabs active={search.tab ?? 'all'} />
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <SortSelect value={search.sort ?? 'recent'} onChange={(sort) => updateFilters({ sort: sort === 'recent' ? undefined : sort })} />
             </div>
           </div>
@@ -213,7 +213,7 @@ export function HomePage() {
               </Button>
             )}
             {isRefreshing && <span className="text-xs text-khaki">Atualizando…</span>}
-            <div className="ml-auto md:hidden">
+            <div className="ml-auto lg:hidden">
               <SortSelect value={search.sort ?? 'recent'} onChange={(sort) => updateFilters({ sort: sort === 'recent' ? undefined : sort })} />
             </div>
           </div>

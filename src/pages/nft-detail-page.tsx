@@ -31,7 +31,7 @@ function defaultEdition(nft: NftDetail) {
 
 function DetailSkeleton() {
   return (
-    <div className="container-page flex flex-col gap-6 pt-6 md:flex-row md:gap-8 md:pt-8" aria-busy="true" aria-label="Carregando NFT">
+    <div className="container-page flex flex-col gap-6 pt-6 md:pt-8 lg:flex-row lg:gap-8" aria-busy="true" aria-label="Carregando NFT">
       <div className="flex gap-7">
         <div className="hidden flex-col gap-4 md:flex">
           {Array.from({ length: 4 }, (_, i) => (
@@ -181,7 +181,7 @@ function PurchasePanel({ nft }: { nft: NftDetail }) {
       </p>
 
       {/* Desktop */}
-      <div className="hidden items-center justify-between gap-4 md:flex">
+      <div className="hidden flex-wrap items-center justify-between gap-4 md:flex">
         <QuantityStepper label={nft.name} value={safeQuantity} max={Math.max(limit, 1)} onChange={setQuantity} disabled={!canBuy} />
         <div className="flex gap-2">
           <Button className="h-10 w-[130px] text-sm font-bold" onClick={() => add(true)} disabled={!canBuy} aria-describedby="limit-help">
@@ -336,7 +336,7 @@ export function NftDetailPage() {
           </ol>
         </nav>
 
-        <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
           <Gallery nft={nft} />
 
           <div className="flex min-w-0 flex-1 flex-col gap-5 max-md:-mx-4 max-md:rounded-t-[28px] max-md:bg-surface max-md:px-6 max-md:pt-6">

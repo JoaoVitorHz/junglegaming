@@ -86,6 +86,23 @@ test.describe('Acessibilidade', () => {
     }
   })
 
+  test('tablet (768 px): sem overflow e controles principais visíveis', async ({ app, page }) => {
+    test.skip(app.isMobile, 'Viewport próprio')
+    await page.setViewportSize({ width: 768, height: 1024 })
+    for (const path of ['/', '/nft/emerald-ape-042', '/carrinho', '/entrar']) {
+      await app.goto(path)
+      await page.waitForTimeout(300)
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      expect(overflow, 'overflow em ' + path).toBeLessThanOrEqual(0)
+    }
+    await app.goto('/nft/emerald-ape-042')
+    await expect(page.getByRole('button', { name: 'COMPRAR', exact: true })).toBeInViewport({ ratio: 1 }).catch(async () => {
+      await page.getByRole('button', { name: 'COMPRAR', exact: true }).scrollIntoViewIfNeeded()
+      await expect(page.getByRole('button', { name: 'COMPRAR', exact: true })).toBeInViewport({ ratio: 1 })
+    })
+    await expect(page.getByRole('button', { name: /Favoritar/ })).toBeVisible()
+  })
+
   test('alterações em tempo real são anunciadas', async ({ app, page }) => {
     await app.addToCart('emerald-ape-042')
     await app.mock.updateNft({ fromCart: true, priceDelta: '0.05' })

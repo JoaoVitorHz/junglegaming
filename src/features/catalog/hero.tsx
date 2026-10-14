@@ -32,12 +32,12 @@ export function Hero({ items, isLoading }: HeroProps) {
         aria-hidden="true"
         className="pointer-events-none absolute -top-8 -left-20 size-62 rounded-full bg-gradient-to-br from-[#dd9a5f]/40 to-transparent md:hidden"
       />
-      <div className="relative flex items-center gap-2 md:gap-[110px] md:pl-10">
+      <div className="relative flex items-center gap-2 md:gap-10 md:pl-6 lg:gap-[110px] lg:pl-10">
         <div className="flex min-w-0 flex-1 flex-col gap-4 md:gap-11">
           <div className="flex flex-col gap-1.5 md:gap-8">
             <div className="flex flex-col gap-1.5 md:gap-2">
               <p className="text-xs leading-4 font-medium md:text-sm md:tracking-[0.1em]">Bem-vindo à Kurio</p>
-              <h1 id="hero-title" className="text-lg leading-[29px] font-bold md:text-[43px] md:leading-[70px]">
+              <h1 id="hero-title" className="text-lg leading-[29px] font-bold md:text-[32px] md:leading-[52px] lg:text-[43px] lg:leading-[70px]">
                 <span className="md:hidden">
                   SEJA DONO DA
                   <br />
@@ -86,16 +86,16 @@ export function Hero({ items, isLoading }: HeroProps) {
 
         <div className="relative shrink-0">
           {isLoading || !current ? (
-            <Skeleton className="size-[138px] rounded-2xl md:size-[450px] md:rounded-3xl" />
+            <Skeleton className="size-[138px] rounded-2xl md:size-[300px] md:rounded-3xl lg:size-[450px]" />
           ) : (
             <Link activeOptions={{ exact: true }} to="/nft/$slug" params={{ slug: current.slug }} aria-label={`Ver ${current.name}`} className="block">
               <NftImage
                 key={current.id}
                 imageKey={current.image.key}
                 alt={current.image.alt}
-                sizes="(min-width: 768px) 450px, 138px"
+                sizes="(min-width: 1024px) 450px, (min-width: 768px) 300px, 138px"
                 priority
-                className="size-[138px] rounded-2xl md:size-[450px] md:rounded-3xl"
+                className="size-[138px] rounded-2xl md:size-[300px] md:rounded-3xl lg:size-[450px]"
               />
             </Link>
           )}

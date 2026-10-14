@@ -11,7 +11,8 @@
     "lint": "oxlint",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "audit": "npm run build && node lighthouse/run.mjs"
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^5.3.0",
@@ -37,8 +38,11 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "chrome-launcher": "^1.2.2",
+    "lighthouse": "^13.5.0",
     "msw": "^2.15.0",
     "oxlint": "^1.88.0",
+    "serve": "^14.2.6",
     "tailwindcss": "^4.3.3",
     "tw-animate-css": "^1.4.0",
     "typescript": "~6.0.2",

@@ -14,10 +14,9 @@ async function enableMocks() {
 }
 
 async function bootstrap() {
-  await enableMocks()
-  // A aplicação é importada só depois dos mocks: o engine.io-client captura
-  // `globalThis.WebSocket` ao ser avaliado, e o MSW precisa tê-lo interceptado.
-  const { App } = await import('./app')
+  // App e mocks baixam em paralelo; a renderização espera os mocks para que
+  // nenhuma requisição saia antes de o MSW interceptar a rede.
+  const [{ App }] = await Promise.all([import('./app'), enableMocks()])
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <App />

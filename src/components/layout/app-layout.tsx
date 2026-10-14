@@ -42,7 +42,8 @@ export function AppLayout() {
         Pular para o conteúdo
       </a>
       <SiteHeader className={cn(ownMobileChrome && 'max-md:hidden')} />
-      <main id="conteudo" tabIndex={-1} className={cn('flex-1 outline-none', !hideMobileNav && 'max-md:pb-24')}>
+      {/* Altura mínima: o footer começa abaixo da dobra e não "pula" quando o conteúdo carrega (CLS). */}
+      <main id="conteudo" tabIndex={-1} className={cn('min-h-[calc(100dvh-5rem)] flex-1 outline-none', !hideMobileNav && 'max-md:pb-24')}>
         <Outlet />
       </main>
       <SiteFooter />

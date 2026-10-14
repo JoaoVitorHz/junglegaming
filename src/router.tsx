@@ -8,6 +8,10 @@ import {
 } from '@tanstack/react-router'
 import { sessionStore } from '@/auth/session-store'
 import { AppLayout } from '@/components/layout/app-layout'
+// Páginas de entrada (Início e Detalhe) no bundle principal: evita um salto extra
+// na cadeia de carregamento até o LCP. As demais rotas são carregadas sob demanda.
+import { HomePage } from '@/pages/home-page'
+import { NftDetailPage } from '@/pages/nft-detail-page'
 import { NotFoundPage } from '@/pages/not-found-page'
 import { RouteErrorPage } from '@/pages/route-error-page'
 import { authSearchSchema, catalogSearchSchema } from '@/routes/search'
@@ -26,13 +30,13 @@ const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
   validateSearch: (search) => catalogSearchSchema.parse(search),
-  component: lazyRouteComponent(() => import('@/pages/home-page'), 'HomePage'),
+  component: HomePage,
 })
 
 const nftRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/nft/$slug',
-  component: lazyRouteComponent(() => import('@/pages/nft-detail-page'), 'NftDetailPage'),
+  component: NftDetailPage,
 })
 
 const cartRoute = createRoute({

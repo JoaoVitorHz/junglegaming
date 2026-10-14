@@ -32,6 +32,7 @@ export const apiErrorCodes = [
   'COUPON_INVALID',
   'COUPON_EXPIRED',
   'WALLET_REJECTED',
+  'WALLET_DISCONNECTED',
   'SERVICE_UNAVAILABLE',
   'INTERNAL_ERROR',
 ] as const
@@ -120,6 +121,8 @@ export type NftDetail = z.infer<typeof nftDetailSchema>
 
 export const nftListQuerySchema = z.object({
   q: z.string().optional(),
+  collection: z.string().optional(),
+  exclude: z.string().optional(),
   categories: z.array(z.enum(categories)).optional(),
   networks: z.array(z.enum(networks)).optional(),
   minPrice: ethAmount.optional(),

@@ -685,14 +685,23 @@ const mockControlHandlers = [
     const body = (await request.json()) as {
       nftId?: string
       slug?: string
+      /** Usa o primeiro item do carrinho de quem fez a requisição. */
+      fromCart?: boolean
       price?: string
       priceDelta?: string
+      soldOut?: boolean
       editions?: { id: string; available: number }[]
     }
-    const nft = body.nftId ? db.nfts[body.nftId] : body.slug ? findNftBySlug(body.slug) : null
+    let nft = body.nftId ? db.nfts[body.nftId] : body.slug ? findNftBySlug(body.slug) : null
+    let editions = body.editions
+    if (body.fromCart) {
+      const line = resolveCart(request).items[0]
+      nft = line ? db.nfts[line.nftId] : null
+      if (line && body.soldOut) editions = [{ id: line.editionId, available: 0 }]
+    }
     if (!nft) return HttpResponse.json({ error: 'NFT não encontrado' }, { status: 404 })
     const price = body.price ?? (body.priceDelta ? addEth(nft.price, body.priceDelta) : undefined)
-    const event = updateNft(nft.id, { price, editions: body.editions })
+    const event = updateNft(nft.id, { price, editions })
     return HttpResponse.json({ event })
   }),
 

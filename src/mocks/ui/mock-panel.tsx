@@ -74,7 +74,7 @@ export default function MockPanel() {
         <Button
           variant="outline"
           size="sm"
-          className="fixed bottom-4 left-4 z-40 gap-1.5 border-line-strong bg-surface text-xs max-md:bottom-24"
+          className="fixed bottom-4 left-4 z-40 gap-1.5 border-line-strong bg-surface text-xs max-md:top-2 max-md:right-2 max-md:bottom-auto max-md:left-auto max-md:h-7 max-md:px-2 max-md:opacity-80"
           aria-label="Abrir painel de simulação"
         >
           <FlaskConical aria-hidden="true" /> Simulação

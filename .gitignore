@@ -25,3 +25,6 @@ dist-ssr
 
 # Enunciado do desafio (não versionado)
 teste-descricao.txt
+
+# Scripts locais temporários
+*.tmp.mjs

@@ -309,6 +309,7 @@ export function serializeCart(cart: CartRecord): Cart {
     items.push({
       id: line.id,
       nftId: nft.id,
+      slug: nft.slug,
       editionId: line.editionId,
       editionLabel: edition?.label ?? line.editionId,
       name: nft.name,

@@ -313,6 +313,7 @@ export type LineStatus = z.infer<typeof lineStatusSchema>
 export const cartItemSchema = z.object({
   id: z.string(),
   nftId: z.string(),
+  slug: z.string(),
   editionId: z.string(),
   editionLabel: z.string(),
   name: z.string(),

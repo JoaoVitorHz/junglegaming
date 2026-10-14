@@ -23,12 +23,16 @@ export function useCart() {
   })
 }
 
+/** Mutations do carrinho rodam em série: respostas nunca chegam fora de ordem. */
+const CART_SCOPE = 'cart'
+
 /** Mutations do carrinho: a resposta da API substitui o cache (fonte da verdade dos totais). */
 function useCartMutation<TVariables>(mutationFn: (variables: TVariables) => Promise<Cart>) {
   const owner = useCartOwnerKey()
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn,
+    scope: { id: CART_SCOPE },
     onSuccess: (cart) => queryClient.setQueryData(queryKeys.private.cart(owner), cart),
     onError: () => queryClient.invalidateQueries({ queryKey: queryKeys.private.cart(owner) }),
   })
@@ -64,6 +68,7 @@ export function useUpdateCartQuantity() {
   const queryClient = useQueryClient()
   const key = queryKeys.private.cart(owner)
   return useMutation({
+    scope: { id: CART_SCOPE },
     mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) => cartApi.updateItem(itemId, quantity),
     onMutate: async ({ itemId, quantity }) => {
       await queryClient.cancelQueries({ queryKey: key })

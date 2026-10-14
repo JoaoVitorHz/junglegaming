@@ -56,7 +56,7 @@ export function App() {
         <RealtimeProvider>
           <RouterProvider router={router} />
         </RealtimeProvider>
-        <Toaster position="top-center" closeButton richColors={false} />
+        <Toaster position="top-center" closeButton richColors={false} mobileOffset={{ top: 76 }} />
       </TooltipProvider>
     </QueryClientProvider>
   )

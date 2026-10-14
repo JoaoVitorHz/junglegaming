@@ -152,7 +152,7 @@ export function HomePage() {
     <div className="container-page flex flex-col gap-4 pt-6 md:gap-24 md:pt-8">
       {/* Mobile: busca + filtros (frame "Mobile / Início") */}
       <div className="flex gap-2 md:hidden">
-        <SearchField value={search.q ?? ''} onSearch={(q) => updateFilters({ q: q || undefined }, { replace: true })} />
+        <SearchField value={search.q ?? ''} onSearch={(q) => updateFilters({ q: q || undefined })} />
         <Sheet open={filtersOpen} onOpenChange={setFiltersOpen}>
           <SheetTrigger asChild>
             <button

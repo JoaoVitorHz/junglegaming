@@ -35,6 +35,7 @@ let state: SessionState = initialState()
 const listeners = new Set<Listener>()
 const endListeners = new Set<EndListener>()
 let expiryTimer: ReturnType<typeof setTimeout> | undefined
+let lastEndReason: SessionEndReason | null = null
 
 function emit() {
   for (const l of listeners) l()
@@ -66,6 +67,11 @@ export const sessionStore = {
     }
   },
 
+  /** Motivo do último encerramento de sessão (logout explícito não pede novo login). */
+  getLastEndReason() {
+    return lastEndReason
+  },
+
   getToken() {
     return state.status === 'authenticated' ? state.token : null
   },
@@ -80,6 +86,7 @@ export const sessionStore = {
       for (const l of endListeners) l('switch', previous)
     }
     state = { status: 'authenticated', ...session }
+    lastEndReason = null
     local.set(SESSION_KEY, session)
     scheduleExpiry()
     emit()
@@ -96,6 +103,7 @@ export const sessionStore = {
   signOut() {
     const userId = state.status === 'authenticated' ? state.user.id : state.status === 'expired' ? state.lastUserId : null
     state = { status: 'anonymous' }
+    lastEndReason = 'logout'
     local.remove(SESSION_KEY)
     clearTimeout(expiryTimer)
     if (userId) for (const l of endListeners) l('logout', userId)
@@ -107,6 +115,7 @@ export const sessionStore = {
     if (state.status !== 'authenticated') return
     const userId = state.user.id
     state = { status: 'expired', lastUserId: userId }
+    lastEndReason = 'expired'
     local.remove(SESSION_KEY)
     clearTimeout(expiryTimer)
     for (const l of endListeners) l('expired', userId)

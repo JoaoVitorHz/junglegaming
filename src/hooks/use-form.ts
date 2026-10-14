@@ -99,7 +99,13 @@ export function useForm<S extends z.ZodType>({ schema, initialValues, refine }: 
       value: (values[name] as string | undefined) ?? '',
       error: errors[name],
       onChange: (event: { target: { value: string } }) => setValue(name, event.target.value),
-      onBlur: () => onBlur(name),
+      onBlur: (event?: { relatedTarget?: EventTarget | null }) => {
+        // Indo para o botão de envio: o submit valida tudo. Validar aqui
+        // renderizaria o erro antes do clique e deslocaria o botão.
+        const next = event?.relatedTarget as HTMLElement | null | undefined
+        if (next?.getAttribute?.('type') === 'submit') return
+        onBlur(name)
+      },
     }
   }
 

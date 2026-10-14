@@ -53,6 +53,7 @@ export function CartLink({ className }: { className?: string }) {
 }
 
 function HeaderSearch() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const navigate = useNavigate()
@@ -72,7 +73,12 @@ function HeaderSearch() {
   function submit(event: FormEvent) {
     event.preventDefault()
     const q = value.trim()
-    void navigate({ to: '/', search: q ? { q } : {}, hash: 'catalogo' })
+    // Na Início, a busca se combina aos filtros atuais; em outras telas, começa do zero.
+    void navigate({
+      to: '/',
+      search: (prev: Record<string, unknown>) => ({ ...(pathname === '/' ? prev : {}), q: q || undefined, page: undefined }),
+      hash: 'catalogo',
+    })
     setOpen(false)
   }
 

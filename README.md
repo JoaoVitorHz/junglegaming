@@ -2,7 +2,8 @@
 
 Implementação do desafio frontend **NFT Marketplace** (layout no Figma "Frontend Challenge"): descoberta, compra e conta do colecionador, em desktop e mobile. Toda a API, a autenticação, as carteiras, os pagamentos e o tempo real funcionam com dados simulados na camada de rede (MSW).
 
-- **Demo:** _URL pública da Vercel (preencher após o deploy)_
+- **Demo:** https://junglegaming.netlify.app
+- **Repositório:** https://github.com/JoaoVitorHz/junglegaming
 - **Arquitetura e decisões:** [ARCHITECTURE.md](ARCHITECTURE.md)
 - **Contratos REST e eventos:** [docs/API.md](docs/API.md)
 - **Lighthouse:** [lighthouse/reports/summary.md](lighthouse/reports/summary.md)
@@ -136,11 +137,8 @@ npm run audit
 
 A auditoria serve o build com `serve -s dist` (gzip, como a CDN) e roda 3 medições por página e perfil. Ela grava os relatórios HTML/JSON, `summary.json` e `summary.md` (medianas, LCP/CLS/TBT, versões e ambiente). A configuração está em `lighthouse/config.mjs`. A análise dos resultados abaixo da meta está no [ARCHITECTURE.md](ARCHITECTURE.md#performance-lighthouse).
 
-## Deploy (Vercel)
+## Deploy (Netlify)
 
-O `vercel.json` configura o build (`npm run build` → `dist`), o rewrite de SPA (acesso direto e refresh de qualquer rota) e os cabeçalhos do `mockServiceWorker.js`. Os mocks e o tempo real funcionam no ambiente publicado, porque `VITE_ENABLE_MOCKS=true` está no `.env`.
+Publicado em **https://junglegaming.netlify.app**. O  define o build ( → ), o rewrite de SPA (acesso direto e refresh de qualquer rota servem o ; arquivos existentes têm prioridade) e os cabeçalhos do . Os mocks e o tempo real funcionam no ambiente publicado porque  está no .
 
-```bash
-npx vercel        # preview
-npx vercel --prod # produção
-```
+O  mantém a configuração equivalente para a Vercel ().

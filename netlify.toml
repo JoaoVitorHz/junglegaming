@@ -1,0 +1,30 @@
+# Deploy no Netlify: build de produção com a camada de mocks ativa (.env).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# SPA: acesso direto e refresh de qualquer rota servem o index.html.
+# Arquivos existentes (assets, imagens, mockServiceWorker.js) têm prioridade.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/mockServiceWorker.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/nfts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

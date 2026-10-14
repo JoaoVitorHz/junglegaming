@@ -172,11 +172,11 @@ function AuthScreen({ mode, search }: { mode: Mode; search: AuthSearch }) {
                 {mode === 'login' ? 'Entrar' : <span>Criar perfil de colecionador</span>}
               </DialogTitle>
               <nav aria-label="Entrar ou criar conta" className="flex items-center gap-1 max-md:hidden">
-                <Link to="/entrar" search={search} replace className={tabClass} aria-current={mode === 'login' ? 'page' : undefined}>
+                <Link activeOptions={{ exact: true }} to="/entrar" search={search} replace className={tabClass} aria-current={mode === 'login' ? 'page' : undefined}>
                   Entrar
                 </Link>
                 <span aria-hidden="true" className="mx-1 h-6 w-px bg-copper" />
-                <Link to="/cadastro" search={search} replace className={tabClass} aria-current={mode === 'register' ? 'page' : undefined}>
+                <Link activeOptions={{ exact: true }} to="/cadastro" search={search} replace className={tabClass} aria-current={mode === 'register' ? 'page' : undefined}>
                   Criar conta
                 </Link>
               </nav>
@@ -193,14 +193,14 @@ function AuthScreen({ mode, search }: { mode: Mode; search: AuthSearch }) {
               {mode === 'login' ? (
                 <>
                   Novo na Kurio?{' '}
-                  <Link to="/cadastro" search={search} replace className="underline-offset-2 hover:underline">
+                  <Link activeOptions={{ exact: true }} to="/cadastro" search={search} replace className="underline-offset-2 hover:underline">
                     Crie uma conta
                   </Link>
                 </>
               ) : (
                 <>
                   Já tem uma conta?{' '}
-                  <Link to="/entrar" search={search} replace className="underline-offset-2 hover:underline">
+                  <Link activeOptions={{ exact: true }} to="/entrar" search={search} replace className="underline-offset-2 hover:underline">
                     Entre
                   </Link>
                 </>

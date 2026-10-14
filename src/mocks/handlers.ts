@@ -222,6 +222,7 @@ const catalogHandlers = [
         q: params.get('q') ?? undefined,
         collection: params.get('collection') ?? undefined,
         exclude: params.get('exclude') ?? undefined,
+        ids: params.get('ids')?.split(',').filter(Boolean),
         categories: parseList<Category>(params.get('category'), categories),
         networks: parseList<Network>(params.get('network'), networks),
         minPrice: eth('minPrice'),

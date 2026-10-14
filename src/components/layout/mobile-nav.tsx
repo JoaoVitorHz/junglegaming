@@ -22,10 +22,10 @@ export function MobileNav() {
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className="relative mx-auto flex h-[72px] max-w-[480px] items-center justify-between rounded-t-[28px] bg-surface px-6 shadow-[0_-8px_24px_rgb(0_0_0/0.35)]">
-        <Link to="/" className={itemClass} aria-current={pathname === '/' ? 'page' : undefined} aria-label="Início">
+        <Link activeOptions={{ exact: true }} to="/" className={itemClass} aria-current={pathname === '/' ? 'page' : undefined} aria-label="Início">
           <House className="size-6" aria-hidden="true" />
         </Link>
-        <Link
+        <Link activeOptions={{ exact: true }}
           to="/perfil/favoritos"
           className={itemClass}
           aria-current={pathname === '/perfil/favoritos' ? 'page' : undefined}
@@ -33,7 +33,7 @@ export function MobileNav() {
         >
           <Heart className="size-6" aria-hidden="true" />
         </Link>
-        <Link
+        <Link activeOptions={{ exact: true, includeHash: true }}
           to="/"
           hash="catalogo"
           aria-label="Explorar catálogo"
@@ -41,7 +41,7 @@ export function MobileNav() {
         >
           <ScanSearch className="size-7" aria-hidden="true" />
         </Link>
-        <Link
+        <Link activeOptions={{ exact: true }}
           to="/carrinho"
           className={cn(itemClass, 'relative')}
           aria-current={pathname === '/carrinho' ? 'page' : undefined}
@@ -54,7 +54,7 @@ export function MobileNav() {
             </span>
           )}
         </Link>
-        <Link
+        <Link activeOptions={{ exact: true }}
           to={user ? '/perfil' : '/entrar'}
           className={itemClass}
           aria-current={pathname.startsWith('/perfil') && pathname !== '/perfil/favoritos' ? 'page' : undefined}

@@ -66,7 +66,7 @@ export function NftCard({ nft, isFavorite, onToggleFavorite, onQuickAdd, quickAd
           >
             <Heart className={cn('size-4 max-md:size-3.5', isFavorite && 'fill-current')} aria-hidden="true" />
           </button>
-          <Link
+          <Link activeOptions={{ exact: true }}
             to="/nft/$slug"
             params={{ slug: nft.slug }}
             className={cn(actionClass, 'max-md:hidden')}
@@ -79,7 +79,7 @@ export function NftCard({ nft, isFavorite, onToggleFavorite, onQuickAdd, quickAd
       </div>
       <div className="flex flex-col gap-1.5 px-2 md:gap-3 md:px-0">
         <h3 className="text-[15px] leading-5 md:text-base md:leading-4">
-          <Link
+          <Link activeOptions={{ exact: true }}
             to="/nft/$slug"
             params={{ slug: nft.slug }}
             className="after:absolute after:inset-0 after:z-0 hover:text-copper-bright focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-ring"

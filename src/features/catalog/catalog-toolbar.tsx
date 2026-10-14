@@ -14,7 +14,7 @@ export function CatalogTabs({ active }: { active: CatalogTab }) {
       <ul className="flex gap-4 whitespace-nowrap md:gap-5">
         {catalogTabs.map((tab) => (
           <li key={tab}>
-            <Link
+            <Link activeOptions={{ exact: true }}
               to="/"
               search={(prev) => ({ ...prev, tab: tab === 'all' ? undefined : tab, page: undefined })}
               hash="catalogo"
@@ -71,14 +71,14 @@ export function CatalogPagination({ page, totalPages }: { page: number; totalPag
       <ul className="flex gap-2">
         {page > 1 && (
           <li>
-            <Link to="/" search={(prev) => ({ ...prev, page: page - 1 === 1 ? undefined : page - 1 })} hash="catalogo" className={pageClass} aria-label="Página anterior">
+            <Link activeOptions={{ exact: true }} to="/" search={(prev) => ({ ...prev, page: page - 1 === 1 ? undefined : page - 1 })} hash="catalogo" className={pageClass} aria-label="Página anterior">
               <ChevronLeft className="size-4" aria-hidden="true" />
             </Link>
           </li>
         )}
         {pageWindow(page, totalPages).map((n) => (
           <li key={n}>
-            <Link
+            <Link activeOptions={{ exact: true }}
               to="/"
               search={(prev) => ({ ...prev, page: n === 1 ? undefined : n })}
               hash="catalogo"
@@ -92,7 +92,7 @@ export function CatalogPagination({ page, totalPages }: { page: number; totalPag
         ))}
         {page < totalPages && (
           <li>
-            <Link to="/" search={(prev) => ({ ...prev, page: page + 1 })} hash="catalogo" className={pageClass} aria-label="Próxima página">
+            <Link activeOptions={{ exact: true }} to="/" search={(prev) => ({ ...prev, page: page + 1 })} hash="catalogo" className={pageClass} aria-label="Próxima página">
               <ChevronRight className="size-4" aria-hidden="true" />
             </Link>
           </li>

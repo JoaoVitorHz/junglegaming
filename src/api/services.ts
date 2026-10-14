@@ -46,6 +46,7 @@ export function nftListParams(query: NftListQuery) {
     q: query.q || undefined,
     collection: query.collection,
     exclude: query.exclude,
+    ids: query.ids?.length ? query.ids.join(',') : undefined,
     category: query.categories?.length ? query.categories.join(',') : undefined,
     network: query.networks?.length ? query.networks.join(',') : undefined,
     minPrice: query.minPrice,

@@ -36,7 +36,7 @@ export function Promos() {
               </h2>
               <p className="text-xs leading-5 text-sand md:text-sm md:leading-6">{promo.text}</p>
             </div>
-            <Link
+            <Link activeOptions={{ exact: true, includeHash: true }}
               to="/"
               search={promo.search}
               hash="catalogo"

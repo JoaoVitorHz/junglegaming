@@ -123,6 +123,7 @@ export const nftListQuerySchema = z.object({
   q: z.string().optional(),
   collection: z.string().optional(),
   exclude: z.string().optional(),
+  ids: z.array(z.string()).optional(),
   categories: z.array(z.enum(categories)).optional(),
   networks: z.array(z.enum(networks)).optional(),
   minPrice: ethAmount.optional(),

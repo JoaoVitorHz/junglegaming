@@ -57,7 +57,7 @@ export function Hero({ items, isLoading }: HeroProps) {
                 </span>
               </p>
             </div>
-            <Link
+            <Link activeOptions={{ exact: true, includeHash: true }}
               to="/"
               hash="catalogo"
               className="flex w-fit items-center gap-2 text-xs font-bold text-copper-bright md:h-10 md:rounded-md md:bg-copper md:px-9 md:pl-7 md:text-base md:text-ink md:hover:bg-copper/90"
@@ -88,7 +88,7 @@ export function Hero({ items, isLoading }: HeroProps) {
           {isLoading || !current ? (
             <Skeleton className="size-[138px] rounded-2xl md:size-[450px] md:rounded-3xl" />
           ) : (
-            <Link to="/nft/$slug" params={{ slug: current.slug }} aria-label={`Ver ${current.name}`} className="block">
+            <Link activeOptions={{ exact: true }} to="/nft/$slug" params={{ slug: current.slug }} aria-label={`Ver ${current.name}`} className="block">
               <NftImage
                 key={current.id}
                 imageKey={current.image.key}
@@ -123,7 +123,7 @@ export function Spotlight({ nft }: { nft: NftSummary | undefined }) {
         </h2>
         <p className="text-[22px] leading-4 font-bold">OFERTA LIMITADA</p>
       </div>
-      <Link to="/nft/$slug" params={{ slug: nft.slug }} className="group block" aria-label={`${nft.name}, oferta limitada`}>
+      <Link activeOptions={{ exact: true }} to="/nft/$slug" params={{ slug: nft.slug }} className="group block" aria-label={`${nft.name}, oferta limitada`}>
         <NftImage
           imageKey={nft.image.key}
           alt={nft.image.alt}

@@ -24,7 +24,7 @@ const navLinkActive = 'font-bold text-copper-bright after:opacity-100'
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" className={cn('text-sm font-bold tracking-[0.1em] text-cream', className)} aria-label="Kurio, página inicial">
+    <Link activeOptions={{ exact: true }} to="/" className={cn('text-sm font-bold tracking-[0.1em] text-cream', className)} aria-label="Kurio, página inicial">
       KURIO
     </Link>
   )
@@ -34,7 +34,7 @@ export function CartLink({ className }: { className?: string }) {
   const cart = useCart()
   const count = cart.data?.itemCount ?? 0
   return (
-    <Link
+    <Link activeOptions={{ exact: true }}
       to="/carrinho"
       className={cn('relative inline-flex size-10 items-center justify-center rounded-md hover:text-copper-bright', className)}
       aria-label={count > 0 ? `Carrinho, ${count} ${count === 1 ? 'item' : 'itens'}` : 'Carrinho vazio'}
@@ -126,7 +126,7 @@ function AccountMenu() {
   if (!user) {
     return (
       <Button asChild className="h-[35px] gap-1 px-2.5 text-base font-medium">
-        <Link to="/entrar" search={{ redirect: href.startsWith('/entrar') || href.startsWith('/cadastro') ? undefined : href }}>
+        <Link activeOptions={{ exact: true }} to="/entrar" search={{ redirect: href.startsWith('/entrar') || href.startsWith('/cadastro') ? undefined : href }}>
           <LogIn className="size-5" aria-hidden="true" />
           Entrar
         </Link>
@@ -150,17 +150,17 @@ function AccountMenu() {
         <DropdownMenuLabel className="truncate">@{user.username}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link to="/perfil">
+          <Link activeOptions={{ exact: true }} to="/perfil">
             <User aria-hidden="true" /> Meu perfil
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/perfil/carteiras">
+          <Link activeOptions={{ exact: true }} to="/perfil/carteiras">
             <Wallet aria-hidden="true" /> Carteiras
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/perfil/favoritos">
+          <Link activeOptions={{ exact: true }} to="/perfil/favoritos">
             <Heart aria-hidden="true" /> Lista de interesse
           </Link>
         </DropdownMenuItem>
@@ -192,12 +192,12 @@ export function SiteHeader({ className }: { className?: string }) {
         <nav aria-label="Principal" className="hidden md:block">
           <ul className="flex gap-10">
             <li>
-              <Link to="/" className={cn(navLinkBase, pathname === '/' && navLinkActive)} aria-current={pathname === '/' ? 'page' : undefined}>
+              <Link activeOptions={{ exact: true }} to="/" className={cn(navLinkBase, pathname === '/' && navLinkActive)} aria-current={pathname === '/' ? 'page' : undefined}>
                 Início
               </Link>
             </li>
             <li>
-              <Link to="/" hash="catalogo" className={cn(navLinkBase, marketActive && navLinkActive)}>
+              <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className={cn(navLinkBase, marketActive && navLinkActive)}>
                 Mercado
               </Link>
             </li>

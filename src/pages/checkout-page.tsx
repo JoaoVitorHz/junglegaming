@@ -268,7 +268,7 @@ function RejectedOrder({ order, onRestart }: { order: Order; onRestart: () => vo
       <div className="flex flex-wrap justify-center gap-3">
         <Button onClick={onRestart}>Tentar novamente</Button>
         <Button asChild variant="outline" className="border-line-strong">
-          <Link to="/carrinho">Voltar ao carrinho</Link>
+          <Link activeOptions={{ exact: true }} to="/carrinho">Voltar ao carrinho</Link>
         </Button>
       </div>
     </section>
@@ -361,7 +361,7 @@ function CheckoutForm({
           />
           <p className="text-center text-[15px]">
             Tem um código promocional?{' '}
-            <Link to="/carrinho" className="text-copper-bright hover:underline">
+            <Link activeOptions={{ exact: true }} to="/carrinho" className="text-copper-bright hover:underline">
               Aplique aqui
             </Link>
           </p>
@@ -381,7 +381,7 @@ function CheckoutForm({
 
         {cart.hasChanges && (
           <p role="alert" className="text-sm text-copper-bright">
-            Alguns itens do carrinho mudaram. <Link to="/carrinho" className="underline">Revise o carrinho</Link> antes de finalizar.
+            Alguns itens do carrinho mudaram. <Link activeOptions={{ exact: true }} to="/carrinho" className="underline">Revise o carrinho</Link> antes de finalizar.
           </p>
         )}
         <FormError message={form.errors._form} />
@@ -463,13 +463,13 @@ export function CheckoutPage() {
         <nav aria-label="Trilha de navegação" className="hidden md:block">
           <ol className="flex gap-1 text-[15px] font-bold">
             <li>
-              <Link to="/" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true }} to="/" className="hover:text-copper-bright">
                 Início
               </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link to="/" hash="catalogo" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className="hover:text-copper-bright">
                 Mercado
               </Link>
             </li>
@@ -504,7 +504,7 @@ export function CheckoutPage() {
           <div className="flex flex-col items-center gap-4 rounded-lg border border-dashed border-line-strong px-6 py-16 text-center">
             <p className="text-lg font-bold">Não há itens para pagar</p>
             <Button asChild>
-              <Link to="/" hash="catalogo">
+              <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo">
                 Explorar NFTs
               </Link>
             </Button>

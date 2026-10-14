@@ -306,7 +306,7 @@ export function NftDetailPage() {
       <div className="container-page flex flex-col gap-3 md:pt-8">
         {/* Mobile: voltar + favoritar sobre a arte */}
         <div className="flex items-center justify-between pt-6 md:hidden">
-          <Link to="/" hash="catalogo" className="grid size-9 place-items-center rounded-full border border-line-strong bg-surface-raised text-copper-bright" aria-label="Voltar ao catálogo">
+          <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className="grid size-9 place-items-center rounded-full border border-line-strong bg-surface-raised text-copper-bright" aria-label="Voltar ao catálogo">
             <ChevronLeft className="size-5" aria-hidden="true" />
           </Link>
           <button
@@ -323,13 +323,13 @@ export function NftDetailPage() {
         <nav aria-label="Trilha de navegação" className="hidden md:block">
           <ol className="flex gap-1 text-[15px] font-bold">
             <li>
-              <Link to="/" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true }} to="/" className="hover:text-copper-bright">
                 Início
               </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link to="/" hash="catalogo" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className="hover:text-copper-bright">
                 Mercado
               </Link>
             </li>

@@ -81,7 +81,7 @@ export function OrderPage() {
               <h1 className="text-lg font-bold text-coral">Pagamento recusado</h1>
               <p className="text-sm text-sand">{data.statusReason ?? 'A transação não foi concluída.'} Nenhum valor foi cobrado.</p>
               <Button asChild>
-                <Link to="/carrinho">Voltar ao carrinho</Link>
+                <Link activeOptions={{ exact: true }} to="/carrinho">Voltar ao carrinho</Link>
               </Button>
             </>
           )}

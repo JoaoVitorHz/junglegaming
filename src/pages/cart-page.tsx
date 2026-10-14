@@ -67,7 +67,7 @@ function CartLine({ item }: { item: CartItem }) {
         <div className="contents md:flex md:items-center md:gap-4">
           <NftImage imageKey={item.image.key} alt="" sizes="100px" className="row-span-2 size-[100px] rounded-l-lg md:size-[70px] md:rounded-none" />
           <div className="flex min-w-0 flex-col gap-1 py-3 md:py-0">
-            <Link to="/nft/$slug" params={{ slug: item.slug }} className="line-clamp-2 text-base leading-5 font-bold hover:text-copper-bright">
+            <Link activeOptions={{ exact: true }} to="/nft/$slug" params={{ slug: item.slug }} className="line-clamp-2 text-base leading-5 font-bold hover:text-copper-bright">
               {item.name}
             </Link>
             <p className="text-sm text-khaki md:text-[15px]">
@@ -298,13 +298,13 @@ export function CartPage() {
         <nav aria-label="Trilha de navegação" className="hidden md:block">
           <ol className="flex gap-1 text-[15px] font-bold">
             <li>
-              <Link to="/" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true }} to="/" className="hover:text-copper-bright">
                 Início
               </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link to="/" hash="catalogo" className="hover:text-copper-bright">
+              <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className="hover:text-copper-bright">
                 Mercado
               </Link>
             </li>
@@ -341,7 +341,7 @@ export function CartPage() {
                 <p className="text-lg font-bold">Seu carrinho está vazio</p>
                 <p className="max-w-sm text-sm text-sand">Explore o catálogo e adicione NFTs para começar sua coleção.</p>
                 <Button asChild>
-                  <Link to="/" hash="catalogo">
+                  <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo">
                     Explorar NFTs
                   </Link>
                 </Button>
@@ -369,7 +369,7 @@ export function CartPage() {
                 <CouponForm cart={data} />
                 <TotalsSummary totals={data.totals} couponLabel={data.coupon ? `Desconto (${data.coupon.code})` : undefined} />
                 <CheckoutButton cart={data} />
-                <Link to="/" hash="catalogo" className="text-center text-base text-copper-bright hover:underline max-md:hidden">
+                <Link activeOptions={{ exact: true, includeHash: true }} to="/" hash="catalogo" className="text-center text-base text-copper-bright hover:underline max-md:hidden">
                   Continuar explorando
                 </Link>
               </>

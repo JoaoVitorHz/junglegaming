@@ -130,7 +130,8 @@ export function listNfts(query: NftListQuery): NftListResponse {
       matchesText(n) &&
       matchesTab(n) &&
       (!query.collection || n.collection === query.collection) &&
-      (!query.exclude || n.id !== query.exclude),
+      (!query.exclude || n.id !== query.exclude) &&
+      (!query.ids || query.ids.includes(n.id)),
   )
   const byCategory = base.filter(
     (n) => matchesPrice(n) && (!query.networks?.length || query.networks.includes(n.network)),

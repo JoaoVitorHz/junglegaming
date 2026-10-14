@@ -143,7 +143,7 @@ export function SiteFooter() {
           </h2>
           <ul>
             <li>
-              <Link to="/perfil" className={linkClass}>
+              <Link activeOptions={{ exact: true }} to="/perfil" className={linkClass}>
                 Meu perfil
               </Link>
             </li>
@@ -157,7 +157,7 @@ export function SiteFooter() {
               <ComingSoon className={linkClass}>Estúdio do criador</ComingSoon>
             </li>
             <li>
-              <Link to="/perfil/favoritos" className={linkClass}>
+              <Link activeOptions={{ exact: true }} to="/perfil/favoritos" className={linkClass}>
                 Lista de interesse
               </Link>
             </li>
@@ -182,7 +182,7 @@ export function SiteFooter() {
           <ul>
             {collectionLinks.map((link) => (
               <li key={link.category}>
-                <Link to="/" search={{ category: link.category }} hash="catalogo" className={linkClass}>
+                <Link activeOptions={{ exact: true, includeHash: true }} to="/" search={{ category: link.category }} hash="catalogo" className={linkClass}>
                   {link.label}
                 </Link>
               </li>

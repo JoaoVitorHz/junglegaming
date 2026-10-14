@@ -12,7 +12,7 @@ export function NotFoundPage({ title = 'Página não encontrada', description }:
         {description ?? 'O endereço que você acessou não existe ou foi removido.'}
       </p>
       <Button asChild>
-        <Link to="/">Voltar para o início</Link>
+        <Link activeOptions={{ exact: true }} to="/">Voltar para o início</Link>
       </Button>
     </section>
   )

@@ -139,6 +139,12 @@ A auditoria serve o build com `serve -s dist` (gzip, como a CDN) e roda 3 mediç
 
 ## Deploy (Netlify)
 
-Publicado em **https://junglegaming.netlify.app**. O  define o build ( → ), o rewrite de SPA (acesso direto e refresh de qualquer rota servem o ; arquivos existentes têm prioridade) e os cabeçalhos do . Os mocks e o tempo real funcionam no ambiente publicado porque  está no .
+Publicado em **https://junglegaming.netlify.app**. O `netlify.toml` define:
 
-O  mantém a configuração equivalente para a Vercel ().
+- o build (`npm run build` → `dist`);
+- o rewrite de SPA: acesso direto e refresh de qualquer rota servem o `index.html`, e arquivos existentes têm prioridade;
+- os cabeçalhos do `mockServiceWorker.js`.
+
+Os mocks e o tempo real funcionam no ambiente publicado porque `VITE_ENABLE_MOCKS=true` está no `.env`.
+
+O `vercel.json` mantém a configuração equivalente para a Vercel (`npx vercel --prod`).

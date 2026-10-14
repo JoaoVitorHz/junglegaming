@@ -2,14 +2,16 @@ import { useCallback, useRef, useState, type FormEvent } from 'react'
 import type { z } from 'zod'
 import { toApiError } from '@/api/errors'
 
-type Values = Record<string, string>
 type Errors<T> = Partial<Record<keyof T | '_form', string>>
 
-interface UseFormOptions<S extends z.ZodType<unknown, Values>> {
+/** Valores do formulário: sempre strings (o que o usuário digitou), validadas pelo schema no envio. */
+export type FormValues<S extends z.ZodType> = { [K in keyof z.input<S>]-?: string }
+
+interface UseFormOptions<S extends z.ZodType> {
   schema: S
-  initialValues: z.input<S> & Values
+  initialValues: FormValues<S>
   /** Validação extra que depende de mais de um campo (ex.: confirmação de senha). */
-  refine?: (values: z.input<S>) => Errors<z.input<S>>
+  refine?: (values: FormValues<S>) => Errors<FormValues<S>>
 }
 
 /**
@@ -18,8 +20,8 @@ interface UseFormOptions<S extends z.ZodType<unknown, Values>> {
  * - mapeia `fieldErrors` da API para os campos;
  * - leva o foco ao primeiro campo inválido.
  */
-export function useForm<S extends z.ZodType<unknown, Values>>({ schema, initialValues, refine }: UseFormOptions<S>) {
-  type V = z.input<S> & Values
+export function useForm<S extends z.ZodType>({ schema, initialValues, refine }: UseFormOptions<S>) {
+  type V = FormValues<S>
   const [values, setValues] = useState<V>(initialValues)
   const [errors, setErrors] = useState<Errors<V>>({})
   const [touched, setTouched] = useState<Partial<Record<keyof V, boolean>>>({})

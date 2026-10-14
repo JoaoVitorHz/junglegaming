@@ -1,4 +1,4 @@
-import type { Category, Network, OrderStatus, SortOption, WalletProvider } from '@/api/contracts'
+import { networks, walletProviders, type Category, type Network, type OrderStatus, type SortOption, type WalletProvider } from '@/api/contracts'
 
 export const categoryLabels: Record<Category, string> = {
   'arte-digital': 'Arte digital',
@@ -42,3 +42,6 @@ export function formatEthBr(value: string, decimals = 2) {
   const [int = '0', frac = ''] = value.split('.')
   return `${int},${frac.padEnd(decimals, '0').slice(0, Math.max(decimals, frac.replace(/0+$/, '').length))}`
 }
+
+export const networkOptions = networks.map((n) => ({ value: n, label: networkLabels[n] }))
+export const providerOptions = walletProviders.map((p) => ({ value: p, label: providerLabels[p] }))

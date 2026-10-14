@@ -9,6 +9,8 @@ async function enableMocks() {
   if (import.meta.env.VITE_ENABLE_MOCKS !== 'true') return
   const { startMocks } = await import('./mocks/browser')
   await startMocks()
+  // Sinal para automação (Playwright/Lighthouse): a camada de mocks está ativa.
+  document.documentElement.dataset.mocks = 'ready'
 }
 
 async function bootstrap() {

@@ -80,7 +80,7 @@ export function MobileTopBar({ title, action, fallback = '/' }: { title: ReactNo
       >
         <ChevronLeft className="size-5" aria-hidden="true" />
       </button>
-      <h1 className="flex-1 truncate text-center text-xl font-bold">{title}</h1>
+      <h1 className="flex-1 truncate text-center text-lg font-bold min-[400px]:text-xl">{title}</h1>
       <div className="flex size-9 shrink-0 items-center justify-center">{action}</div>
     </div>
   )

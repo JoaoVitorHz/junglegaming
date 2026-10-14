@@ -11,12 +11,16 @@ async function enableMocks() {
   await startMocks()
 }
 
-enableMocks().then(() => {
+async function bootstrap() {
+  await enableMocks()
+  // A aplicação é importada só depois dos mocks: o engine.io-client captura
+  // `globalThis.WebSocket` ao ser avaliado, e o MSW precisa tê-lo interceptado.
+  const { App } = await import('./app')
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <main className="container-page py-10">
-        <h1 className="text-3xl font-bold tracking-wide">KURIO</h1>
-      </main>
+      <App />
     </StrictMode>,
   )
-})
+}
+
+void bootstrap()

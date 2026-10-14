@@ -86,8 +86,21 @@ function handleConnection(connection: WebSocketHandlerConnection) {
 
 export const realtimeHandlers = [socketLink.addEventListener('connection', handleConnection)]
 
+/** Remove conexões já fechadas pelo cliente (ex.: desmontagem antes do handshake). */
+function prune() {
+  for (const live of [...connections.values()]) {
+    // `socket` existe na implementação (WebSocketClientConnection), não no tipo de protocolo.
+    const socket = (live.raw.client as unknown as { socket: WebSocket }).socket
+    if (socket.readyState >= WebSocket.CLOSING) {
+      clearInterval(live.ping)
+      connections.delete(live.id)
+    }
+  }
+}
+
 /** Publica um evento. `order.updated` só chega às conexões do dono do pedido. */
 export function publish(event: RealtimeEvent) {
+  prune()
   eventLog.push(event)
   if (eventLog.length > 100) eventLog.shift()
   for (const live of connections.values()) {
@@ -138,5 +151,6 @@ export function resetRealtime() {
 }
 
 export function connectionCount() {
+  prune()
   return connections.size
 }
